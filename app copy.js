@@ -42,7 +42,8 @@ const productsDisplay = () => {
       }
       dodajElement(element)
     })
-    products.append(product, img, title, description, button)
+    product.append(img, title, description, button)
+    products.append(product)
   })
 }
 
