@@ -153,6 +153,7 @@ body, html{
     font-weight: 300;
     max-height: 80px;
     color: var(--text-color);
+    overflow-y: hidden;
 }
 
 .cart-item-buttons{

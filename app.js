@@ -17,6 +17,7 @@ const loadCartfromLocal = () =>{
 }
 
 cart = loadCartfromLocal();
+// saveCartToLocal(null);
 
 const updateCart = () =>{
     cart = loadCartfromLocal();
@@ -28,11 +29,12 @@ const updateCart = () =>{
     else{
         cartIcon.children[1].innerText = cart.length;
     }
-    cartIcon.children[0].addEventListener("click", () => {
+    cartIcon.addEventListener("click", () => {
         cartIcon.children[2].classList.toggle("hidden");
         cartIcon.children[2].innerHTML = "";
+        console.log(cart);
         cart.forEach((item, index) => {
-
+            
             const cartItem = document.createElement("li");
             cartItem.innerHTML = `
                 <img class="cart-item-image" scr="${cart[index].image}">
@@ -79,45 +81,41 @@ const productsDisplay = () =>{
     products.innerHTML = "";
     for(let i = 0; i < 6; i++){
         products.innerHTML += `
-            <div class="product">
+            <div class="product" id="${i+step}">
                 <img class="product-image" src="${data[i+step].image}" alt="Shoes">
                 <h1 class="product-title">
-                    ${data[i+step].title}
+                    ${data[i+step].name}
                 </h1>
                 <p class="product-description">
                     ${data[i+step].description}
                 </p>
+                <div class="product-button">Add to cart</div>
             </div>
-        `;
-
-        const button = document.createElement("div");
-        button.classList.add("product-button");
-        button.innerText = "Add to cart";
-        console.log("button")
-        button.addEventListener("click", () => {
-            console.log(cart.findIndex(x => x.title === data[index].title));
-            if(cart.findIndex(x => x.title === data[index].title) !== -1){
-                cart.push(JSON.parse(`{id: ${index}, name: ${data[index].name}, description: ${data[index].description}, image: }`));
-                saveCartToLocal(cart);
-                updateCart();
-                console.log("added")
-            }
-        })
-
-
+            `;
+                
         let createdProducts = document.querySelectorAll(".product")
+
         createdProducts.forEach((item, index) => {
-            if(index == i){
-                button.addEventListener("click", () => {
-                    if(cart.findIndex(x => x.title === data[index].title) !== -1){
-                        cart.push(JSON.parse(`{id: ${index}, name: ${data[index].name}, description: ${data[index].description}, image: }`));
-                        saveCartToLocal(cart);
-                        updateCart();
-                        console.log("added");
+            const button = item.querySelector(".product-button");
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                console.log("added");
+                // Warunek: cart.findIndex(x => x.title == data[item.getAttribute("id")].title != -1
+                if(true){
+                    console.log();
+                    const toCart = {
+                        id: item.getAttribute("id"), 
+                        name: data[item.getAttribute("id")].name, 
+                        description: data[item.getAttribute("id")].description, 
+                        image: data[item.getAttribute("id")].image,
                     }
-                })
-                item.appendChild(button);
-            } 
+                    cart.push(toCart);
+                    console.log(cart)
+                    saveCartToLocal(cart);
+                    updateCart();
+                    console.log("added");
+                }
+            })
         })
     }
     stepbar.innerHTML = "";
