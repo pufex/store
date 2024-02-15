@@ -13,16 +13,21 @@
                 <img src="./logo.svg" alt="">
             </div>
             <div class="nav-links">
+                <div class="cart nav-link">
+                    <span class="cart-icon">^[#]</span>
+                    <div class="cart-number">0</div>
+                    <ul class="cart-list hidden"></ul>
+                </div>
                 <a class="nav-link" href="">Home</a>
                 <a class="nav-link" href="">Products</a>
-                <a class="nav-link" href="">Contact</a>
+                <a class="nav-link" href="">About</a>
             </div>
             <div class="hamburger">
                 <span class="hamburger-icon">☰</span>
                 <div class="hamburger-list hidden">
                     <a href="" class="hamburger-link">Home</a>
                     <a href="" class="hamburger-link">Products</a>
-                    <a href="" class="hamburger-link">Contact</a>
+                    <a href="" class="hamburger-link">About</a>
                 </div>
             </div>
         </div>
@@ -31,56 +36,10 @@
         <h1>Check out our products!</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur autem voluptatum facere vero, labore corrupti laboriosam libero sapiente similique! Est dolorem dignissimos consequuntur nihil autem!</p>
     </header>
-    <article class="main">
-        <div class="products">
-            <div class="product">
-                <img class="product-image" src="shoes.jpeg" alt="Shoes">
-                <h1 class="product-title">
-                    Title
-                </h1>
-                <p class="product-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo maiores tempora sequi ratione, id soluta minus esse similique assumenda fugiat voluptates iusto exercitationem sunt!
-                </p>
-                <div class="product-button">
-                    Add to cart
-                </div>
-            </div>
-            <div class="product">
-                <img class="product-image" src="shoes.jpeg" alt="Shoes">
-                <h1 class="product-title">
-                    Title
-                </h1>
-                <p class="product-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo maiores tempora sequi ratione, id soluta minus esse similique assumenda fugiat voluptates iusto exercitationem sunt!
-                </p>
-                <div class="product-button">
-                    Add to cart
-                </div>
-            </div>
-            <div class="product">
-                <img class="product-image" src="shoes.jpeg" alt="Shoes">
-                <h1 class="product-title">
-                    Title
-                </h1>
-                <p class="product-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo maiores tempora sequi ratione, id soluta minus esse similique assumenda fugiat voluptates iusto exercitationem sunt!
-                </p>
-                <div class="product-button">
-                    Add to cart
-                </div>
-            </div>
-            <div class="product">
-                <img class="product-image" src="shoes.jpeg" alt="Shoes">
-                <h1 class="product-title">
-                    Title
-                </h1>
-                <p class="product-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo maiores tempora sequi ratione, id soluta minus esse similique assumenda fugiat voluptates iusto exercitationem sunt!
-                </p>
-                <div class="product-button">
-                    Add to cart
-                </div>
-            </div>
+    <article class="main" id="main">
+        <div class="products-container">
+            <div class="products"></div>
+            <div class="stepbar"></div>
         </div>
         <div class="sidebar">
             <h1 class="list-title">Price</h1>
@@ -122,5 +81,24 @@
             <div class="sidebar-button">Apply filter</div>
         </div>
     </article>
+    <footer class="footer-container">
+        <div class="footer">
+            <div class="footer-links">
+                <a href="" class="footer-link">Home</a>
+                <a href="" class="footer-link">About</a>
+                <a href="" class="footer-link">Products</a>
+            </div>
+            <div class="socials">
+                <a href="https://github.com/pufex" class="social">
+                    <img class="social-icon" src="./github.svg" alt="github icon link">
+                </a>
+                <a href="https://twitter.com" class="social">
+                    <img class="social-icon" src="./twitter-logo-2.svg" alt="twitter icon link">
+                </a>
+            </div>
+        </div>
+        <div class="copyrights">© This site is copyrighted</div>
+    </footer>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
