@@ -1,107 +1,49 @@
+import { getData } from './fetch.js'
 
+const data = await getData()
+console.log(data)
+const products = document.querySelector('.products')
+function dodajElement(nowyElement) {
+  if (!localStorage.getItem('elementy')) {
+    localStorage.setItem('elementy', '[]')
+  }
+  const elementy = JSON.parse(localStorage.getItem('elementy'))
+  elementy.push(nowyElement)
+  localStorage.setItem('elementy', JSON.stringify(elementy))
+}
 
-const displayCountries = () =>{
-  container.innerHTML = "";
-  countries.forEach((country) =>{
-    const countryContainer = document.createElement("div");
-    countryContainer.classList.add("country-container");
-
-    const countryFlagContainer = document.createElement("div");
-    countryFlagContainer.classList.add("country-flag-container");
-
-    const countryFlag = document.createElement("img");
-    countryFlag.classList.add("country-flag");
-    countryFlag.setAttribute("src", country.flags.svg);
-
-    countryFlagContainer.append(countryFlag);
-
-    const countryName = document.createElement("h1");
-    countryName.classList.add("country-name");
-    countryName.textContent = country.name.common;
-
-    const countryPopulation = document.createElement("p");
-    countryPopulation.classList.add("country-information");
-    countryPopulation.textContent = "Population: " + country.population;
-
-    const countryRegion = document.createElement("p");
-    countryRegion.classList.add("country-information");
-    countryRegion.textContent = "Region: " + country.region;
-    
-    const countryCapital = document.createElement("p");
-    countryCapital.classList.add("country-information");
-    countryCapital.textContent = "Capital: " + country.capital;
-
-    countryContainer.append(countryFlagContainer, countryName, countryPopulation, countryRegion, countryCapital);
-    container.append(countryContainer);
-
-    countryContainer.addEventListener("click", () =>{
-      localStorage.setItem("country", JSON.stringify(country));
-      container.innerHTML = "";
-
-      const specificsContainer = document.createElement("div");
-      specificsContainer.classList.add("specifics");
-      
-      const specificsButton = document.createElement("div");
-      specificsButton.classList.add("specifics-button");
-
-      const specificsContent = document.createElement("div");
-      specificsContent.classList.add("specifics-content");
-
-      const specificsFlag = document.createElement("img");
-      specificsFlag.classList.add("specifics-flag");
-      specificsFlag.setAttribute("src", country.flags.svg); 
-
-      const specificsInfo = document.createElement("div");
-      specificsInfo.classList.add("specifics-info");
-
-      const specificsName = document.createElement("h1");
-      specificsName.classList.add("specifics-name");
-      specificsName.textContent = country.name.common;
-
-      const specificsDetails = document.createElement("div");
-      specificsDetails.classList.add("specifics-details");
-
-      let specificsDetail = document.createElement("p");
-      specificsDetail.classList.add("specifics-detail");
-
-      specificsDetail.textContent = "Native Name: " + country.name.nativeName[Object.keys(country.name.nativeName)[0]].common;
-      specificsDetails.appendChild(specificsDetail);
-      
-      specificsDetail.textContent = "Native Name: " + country.name.nativeName[Object.keys(country.name.nativeName)[0]].common;
-      specificsDetails.appendChild(specificsDetail);
-      
-
-      specificsDetail.textContent = "Population: " + country.population;
-      specificsDetails.appendChild(specificsDetail);
-      
-
-      specificsDetail.textContent = "Region: " + country.name.region;
-      specificsDetails.appendChild(specificsDetail);
-      
-
-      specificsDetail.textContent = "Sub region: " + country.subregion;
-      specificsDetails.appendChild(specificsDetail);
-      
-
-      specificsDetail.textContent = "Capital: " + country.name.capital;
-      specificsDetails.appendChild(specificsDetail);
-
-      specificsDetail.textContent = "Currencies: " + country.currencies;
-      specificsDetails.appendChild(specificsDetail);
-      
-      specificsDetail.textContent = "Languages: ";
-      for(const [key, value] of Object.entries(country.languages)){
-        specificsDetail.textContent += value + ", ";
+const productsDisplay = () => {
+  data.map((item, index) => {
+    const product = document.createElement('div')
+    product.classList.add('product')
+    const img = document.createElement('img')
+    img.classList.add('product-image')
+    img.src = item.image
+    const title = document.createElement('h1')
+    title.classList.add('product-title')
+    title.innerText = item.title
+    const description = document.createElement('p')
+    description.classList.add('product-description')
+    description.innerText = item.description
+    const price = document.createElement('p')
+    price.classList.add('product-price')
+    price.innerText = item.price
+    const button = document.createElement('button')
+    button.classList.add('product-button')
+    button.innerText = 'Add to cart'
+    button.id = item.id
+    button.addEventListener('click', () => {
+      const element = {
+        id: item.id,
+        title: item.title,
+        image: item.image,
+        description: item.description,
+        price: item.price,
       }
-      specificsDetails.appendChild(specificsDetail);
-      
-      container.append(specificsContainer);
-      specificsContainer.append(specificsButton, specificsContent);
-      specificsContent.append(specificsFlag, specificsInfo);
-      specificsInfo.append(specificsName, specificsDetails);
-
+      dodajElement(element)
     })
+    products.append(product, img, title, description, button)
   })
 }
 
-displayCountries();
+productsDisplay()
