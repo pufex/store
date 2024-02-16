@@ -4,12 +4,12 @@ const data = await getData()
 console.log(data)
 const products = document.querySelector('.products')
 function dodajElement(nowyElement) {
-  if (!localStorage.getItem('elementy')) {
-    localStorage.setItem('elementy', '[]')
+  if (!localStorage.getItem('cart')) {
+    localStorage.setItem('cart', '[]')
   }
-  const elementy = JSON.parse(localStorage.getItem('elementy'))
+  const elementy = JSON.parse(localStorage.getItem('cart'))
   elementy.push(nowyElement)
-  localStorage.setItem('elementy', JSON.stringify(elementy))
+  localStorage.setItem('cart', JSON.stringify(elementy))
 }
 
 const productsDisplay = () => {
