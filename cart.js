@@ -8,8 +8,18 @@ const saveCartToLocal=(cart)=>{
 const displayCart = () => {
     container.innerHTML = ''
     if(!cart.length){
-       
-        container.innerHTML = "Cart is empty"
+        const messageEmpty = document.createElement("div");
+        messageEmpty.classList.add("message-empty")
+        const messageText = document.createElement("div");
+        messageText.classList.add("message-text");
+        messageText.innerText = "Your cart is empty!";
+        const messageLink = document.createElement("a");
+        messageLink.setAttribute("href", "./index.html");
+        messageLink.innerText = "Go back to the home page."
+        messageLink.classList.add("message-link");
+
+        messageEmpty.append(messageText, messageLink);
+        container.appendChild(messageEmpty);
         return;
     }
   cart.map((item, index) => {
@@ -29,10 +39,10 @@ const displayCart = () => {
     cartPrice.classList.add('cart-price')
     cartPrice.innerText = item.price
     const cartAmount = document.createElement('div')
-    const buttonDelete = document.createElement('button')
+    const buttonDelete = document.createElement('div')
     buttonDelete.id=item.id
     buttonDelete.classList.add('remove')
-    buttonDelete.innerText = 'Remove'
+    buttonDelete.innerText = 'X'
     buttonDelete.addEventListener('click', (e) => {
       
       let newCart = cart.filter((item, index) => item.id != e.target.id)
