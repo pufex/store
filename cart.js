@@ -1,13 +1,16 @@
 const cart = JSON.parse(localStorage.getItem('cart')) || []
-const container = document.querySelector('.cart-container')
+
+const container = document.querySelector('.cart-container');
+const cartContainer = document.querySelector('.the-cart');
+const cartSummary = document.querySelector(".cart-summary");
 const saveCartToLocal=(cart)=>{
     localStorage.setItem('cart', JSON.stringify(cart))
 }
 
 
 const displayCart = () => {
-    container.innerHTML = ''
-    if(!cart.length){
+  if(!cart.length){
+        container.innerHTML = ''
         const messageEmpty = document.createElement("div");
         messageEmpty.classList.add("message-empty")
         const messageText = document.createElement("div");
@@ -19,26 +22,87 @@ const displayCart = () => {
         messageLink.classList.add("message-link");
 
         messageEmpty.append(messageText, messageLink);
-        container.appendChild(messageEmpty);
+        cart.appendChild(messageEmpty);
         return;
     }
+  cartContainer.innerHTML = '';
+  cartSummary.innerHTML = '';
+
+  const summaryHeader = document.createElement("h1");
+  summaryHeader.classList.add("summary-header");
+  summaryHeader.innerText = "Your cart";
+
+  const summaryPrices = document.createElement("div");
+  summaryPrices.classList.add("summary-prices");
+
+  const hr1 = document.createElement("hr");
+  hr1.classList.add("summary-hr");
+  const hr2 = document.createElement("hr");
+  hr2.classList.add("summary-hr");
+
+  cartSummary.append(summaryHeader, hr1, summaryPrices, hr2);
+
   cart.map((item, index) => {
-   
+    
+
+    const summaryPrice = document.createElement("div");
+    summaryPrice.classList.add("summary-price");
+    summaryPrice.innerText = `${index+1}. ${item.amount}  * ${item.price} = ${((item.price*item.amount).toFixed(2)).toString()}`;
+    summaryPrices.appendChild(summaryPrice);
+
     const cartItem = document.createElement('div')
     cartItem.classList.add('cart-item')
+
     const img = document.createElement('img')
     img.classList.add('cart-image')
     img.src = item.image
+
     const cartTitle = document.createElement('h1')
     cartTitle.classList.add('cart-title')
-    cartTitle.innerText = item.title
+    cartTitle.innerText = item.title;
+
     const cartDescription = document.createElement('p')
     cartDescription.classList.add('cart-description')
     cartDescription.innerText = item.description
+    
+    const cartButtons = document.createElement("div");
+    cartButtons.classList.add("cart-buttons");
+    
     const cartPrice = document.createElement('p')
     cartPrice.classList.add('cart-price')
-    cartPrice.innerText = item.price
-    const cartAmount = document.createElement('div')
+    cartPrice.innerText = (item.price*item.amount).toFixed(2);
+    
+    const cartAmount = document.createElement("div");
+    cartAmount.classList.add("cart-amount");
+
+    const cartQuantity = document.createElement("div");
+    cartQuantity.classList.add("cart-quantity");
+    cartQuantity.innerText = item.amount;
+
+    const add = document.createElement("div");
+    add.classList.add("plus");
+    add.innerText = "+";
+    add.addEventListener("click", () => {
+      item.amount++;
+      saveCartToLocal(cart);
+      location.reload();
+    })
+    
+    const remove = document.createElement("div");
+    remove.classList.add("minus");
+    remove.innerText = "-";
+    remove.addEventListener("click", () => {
+      if(item.amount >= 2){
+        item.amount--;
+        saveCartToLocal(cart);
+        location.reload();
+      } 
+    })
+
+    cartAmount.append(remove, cartQuantity, add);
+
+    cartButtons.append(cartPrice, cartAmount);
+    
     const buttonDelete = document.createElement('div')
     buttonDelete.id=item.id
     buttonDelete.classList.add('remove')
@@ -50,85 +114,13 @@ const displayCart = () => {
       saveCartToLocal(newCart)
       location.reload()
     })
-    cartItem.append(img, cartTitle, cartDescription, cartPrice, buttonDelete)
-    container.append(cartItem)
-  })
+    cartItem.append(img, cartTitle, cartDescription, cartButtons, buttonDelete)
+    cartContainer.append(cartItem)
 
+    
+
+  })
+  let sum = cart.reduce((accumulator, item) => accumulator + item.price*item.amount, 0)
+  console.log(sum);
 }
 displayCart()
-// import {getData} from './fetch.js';
-
-// const updateCart = () =>{
-//     cart = loadCartfromLocal();
-//     if(cart == null) cart = [];
-//     const cartIcon = document.querySelector(".cart");
-//     if(cart.length == null || cart.length == 0){
-//         cartIcon.children[2].innerText == 0;
-//     }
-//     else{
-//         cartIcon.children[2].innerText = cart.length;
-//     }
-// }
-
-// const loadCartfromLocal = () =>{
-//     console.log(localStorage.getItem("cart"));
-//     // if(localStorage.getItem("cart"))
-//         // localStorage.setItem("cart", JSON.stringify([]));
-//     return JSON.parse(localStorage.getItem("cart"));
-// }
-
-// const saveCartToLocal = (array) =>{
-//     localStorage.setItem("cart", JSON.stringify(array));
-// }
-
-// const data = await getData();
-// let cart = [];
-// cart = loadCartfromLocal();
-// console.log(cart);
-
-
-// const displayCart = () => {
-//     const cartContainer = document.querySelector(".cart-container")
-//     cartContainer.innerHTML = "";
-//     if(cart == []){
-//         const noItem = document.createElement("div");
-//         noItem.classList.add("cart-no-item");
-//         cartContainer.appendChild(noItem);
-//         return;
-//     }
-//     cart.forEach((item, index) => {
-//         cartContainer.innerHTML += `
-//             <div class="cart-item">
-//                 <img class="cart-image" src="${item.image}" alt="image">
-//                 <h1 class="cart-title">
-//                     ${item.title}
-//                 </h1>
-//                 <p class="cart-description">
-//                     ${item.description}
-//                 </p>
-//                 <div class="cart-buttons">
-//                     <div class="amount">${item.amount}</div>
-//                     <div class="toggle-amount">
-//                         <div class="plus">+</div>
-//                         <div class="minus">-</div>
-//                     </div>
-//                 </div>
-//                 <div class="remove">
-//                     X
-//                 </div>
-//             </div>
-//         `
-//     })
-//     const removes = document.querySelectorAll(".remove");
-//     removes.forEach((remove, index) =>{
-//         remove.addEventListener("click", () => {
-//             cart = cart.splice(index, 1);
-//             remove.closest(".cart-item").remove();
-//             saveCartToLocal();
-//             displayCart();
-//         })
-//     });
-// }   
-
-// updateCart();
-// displayCart();
