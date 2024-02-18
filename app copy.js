@@ -28,7 +28,7 @@ const productsDisplay = () => {
     const price = document.createElement('p')
     price.classList.add('product-price')
     price.innerText = item.price
-    const button = document.createElement('button')
+    const button = document.createElement('div')
     button.classList.add('product-button')
     button.innerText = 'Add to cart'
     button.id = item.id
