@@ -32,6 +32,8 @@ a{
 }
 
 .nav{
+    position: sticky;
+    top: 0;
     display: block;
     height: 3rem;
     width: 100%;
@@ -39,9 +41,11 @@ a{
     border-bottom: 1px solid rgba(0, 0, 0, 0.096);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.048);
     margin-bottom: 2rem;
+    z-index: 999;
 }
 
 .nav-container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -235,22 +239,23 @@ a{
 
 .hamburger{
     display: none;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    width: 2rem;
     background-color: var(--elements-color);
-}
-
-.hamburger:hover{
-    background-color: var(--elements-color-hover);
+    cursor: pointer;
 }
 
 .hamburger-icon{
     font-size: 1.5rem;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
     color: var(--text-color);
+}
+.hamburger-icon:hover{
+    background-color: var(--elements-color-hover);
+
 }
 
 .hamburger-list{
@@ -259,13 +264,14 @@ a{
     right: 0%;
 }
 
+
 .hamburger-link{
     display: block;
-    width: 150px;
+    min-width: 300px;
     font-size: 1rem;
     color: var(--text-color);
     font-weight: 600;
-    padding: 0.5rem;
+    padding: 1rem 2rem !important;
     background-color: var(--elements-color);
 }
 
@@ -621,6 +627,7 @@ a{
     max-width: 1440px;
     min-height: 100vh;
     padding: 1rem;
+    margin: 0 auto;
 }
 
 .cart-no-item{
@@ -730,10 +737,47 @@ a{
     background-color: rgb(255, 59, 59);
 }
 
+.message-empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.message-text{
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.message-link{
+    color: blue;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
 .remove{
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    color: var(--white);
+    outline: none;
+    cursor: pointer;
+    background-color: crimson;
+    border-radius: 2px;
+}
+
+.remove:hover{
+    background-color: rgb(255, 56, 96);
 }
 
 .hidden{
