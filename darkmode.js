@@ -43,10 +43,8 @@ let color = [
     ],
 ]
 
-let i = 0;
-
-darkmode.addEventListener("click", () => {
-    i++;
+let i = 1;
+const switchTheme = () => {
     document.documentElement.style.setProperty('--main-color', color[0][i%2]);
     document.documentElement.style.setProperty('--elements-color', color[1][i%2]);
     document.documentElement.style.setProperty('--elements-color-hover', color[2][i%2]);
@@ -57,4 +55,9 @@ darkmode.addEventListener("click", () => {
     document.documentElement.style.setProperty('--black', color[7][i%2]);
     document.documentElement.style.setProperty('--creative-element-2', color[5][i%2]);
     document.documentElement.style.setProperty('--creative-element-2-hover', color[8][i%2]);
+}
+
+switchTheme();
+darkmode.addEventListener("click", () => {
+    switchTheme();
 })
