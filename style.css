@@ -888,15 +888,6 @@ a{
 }
 
 .top-message{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    background-color: rgb(28, 156, 28);
-    color: var(--white);
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 600;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -906,17 +897,6 @@ a{
     transition-timing-function: ease-out; */
     border-radius: 10px;
     /* clip-path: polygon(50% 0%, 100% 42%, 100% 100%, 0 100%, 0 42%); */
-}
-
-.top-message::before{
-    display: inline-block;
-    content: " ";
-    height: 1rem;
-    width: 1rem;
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translate(-50%);
 }
 
 @media (max-width: 1050px){
