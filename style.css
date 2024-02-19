@@ -5,8 +5,8 @@
     --elements-color: hsl(0, 0%, 92%);
     --elements-color-hover: hsl(0, 0%, 84%);
     --text-color: hsl(0, 0%, 0%);
-    --creative-element: hsl(16, 100%, 74%);
-    --creative-element-hover: hsl(16, 100%, 79%);
+    --creative-element: hsl(16, 77%, 64%);
+    --creative-element-hover: hsl(16, 70%, 71%);
     --white: hsl(0, 0%, 100%);
     --black: hsl(0, 0%, 0%);
     --creative-element-2: rgb(209, 117, 78);
@@ -57,18 +57,26 @@ a{
     padding: 0.5rem 2rem;
 }
 
-.logo-container{
+.logo-space{
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     cursor: pointer;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
 .logo{
     height: 50%;
     object-fit: contain;
     cursor: pointer;
+}
+
+.nav-options{
+    display: flex;
+    gap: 0.5rem;
 }
 
 .nav-links{
@@ -296,6 +304,7 @@ a{
     width: 100%;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 .header p{
@@ -305,6 +314,7 @@ a{
     width: 100%;
     max-width: 700px;
     font-weight: 300;
+    color: var(--text-color);
 }
 
 .main{
@@ -447,7 +457,7 @@ a{
     justify-content: space-between;
     max-height: 500px;
     width: 100%;
-    background: var(--white);
+    background: var(--elements-color);
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.095);
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.047);
@@ -624,8 +634,9 @@ a{
 .cart-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
+    align-items: start;
     width: 100%;
+    min-height: 100vh;
     max-width: 1440px;
     margin: 0 auto;
     padding: 1rem;
@@ -635,6 +646,8 @@ a{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: auto;
+    padding: 2rem;
     background-color: var(--elements-color);
 }
 
@@ -648,8 +661,31 @@ a{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    color: var(--text-color);
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+
+.summary-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem;
+    min-height: 3rem;
+    background-color: var(--creative-element);
+    border: 1px solid rgba(0, 0, 0, 0.071);
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: var(--white);
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.summary-button:hover{
+    background-color: var(--creative-element-hover);
 }
 
 
@@ -658,7 +694,7 @@ a{
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 1rem;
     width: 500px;
 }
@@ -784,6 +820,10 @@ a{
 }
 
 .message-empty{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -828,6 +868,55 @@ a{
 
 .hidden{
     display: none !important;
+}
+
+.toggle-darkmode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: var(--elements-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.039);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+}
+
+.top-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgb(28, 156, 28);
+    color: var(--white);
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    /* transition-property: top;
+    transition-duration: 1s;
+    transition-timing-function: ease-out; */
+    border-radius: 10px;
+    /* clip-path: polygon(50% 0%, 100% 42%, 100% 100%, 0 100%, 0 42%); */
+}
+
+.top-message::before{
+    display: inline-block;
+    content: " ";
+    height: 1rem;
+    width: 1rem;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 @media (max-width: 1050px){
