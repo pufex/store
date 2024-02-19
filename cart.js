@@ -22,7 +22,7 @@ const displayCart = () => {
         messageLink.classList.add("message-link");
 
         messageEmpty.append(messageText, messageLink);
-        cart.appendChild(messageEmpty);
+        container.appendChild(messageEmpty);
         return;
     }
   cartContainer.innerHTML = '';
@@ -37,18 +37,31 @@ const displayCart = () => {
 
   const hr1 = document.createElement("hr");
   hr1.classList.add("summary-hr");
+
   const hr2 = document.createElement("hr");
   hr2.classList.add("summary-hr");
 
-  cartSummary.append(summaryHeader, hr1, summaryPrices, hr2);
+  const summaryHeader2 = document.createElement("h1");
+  summaryHeader2.classList.add("summary-header");
+  
+  const summaryButton = document.createElement("a");
+  summaryButton.classList.add("summary-button");
+  summaryButton.setAttribute("href", "payment-form.html")
+  summaryButton.innerText = "Pay now!"
+  
+  cartSummary.append(summaryHeader, hr1, summaryPrices, hr2, summaryHeader2, summaryButton);
+  
+  
+  let sum = cart.reduce((accumulator, item) => accumulator + item.price*item.amount, 0)
+  summaryHeader2.innerText += "Total: $" + sum;
+
 
   cart.map((item, index) => {
-    
-
     const summaryPrice = document.createElement("div");
     summaryPrice.classList.add("summary-price");
     summaryPrice.innerText = `${index+1}. ${item.amount}  * ${item.price} = ${((item.price*item.amount).toFixed(2)).toString()}`;
     summaryPrices.appendChild(summaryPrice);
+
 
     const cartItem = document.createElement('div')
     cartItem.classList.add('cart-item')
@@ -120,7 +133,6 @@ const displayCart = () => {
     
 
   })
-  let sum = cart.reduce((accumulator, item) => accumulator + item.price*item.amount, 0)
   console.log(sum);
 }
 displayCart()
