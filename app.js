@@ -45,22 +45,24 @@ const productsDisplay = () => {
         price: item.price,
       }
       dodajElement(element)
-      let added = document.querySelector(".added-to-cart");
+      let added = document.querySelector(".top-message");
       if(added != null){
         added.remove();
+        clearInterval(idInterval);
         clearTimeout(idTimeout);
       }
       added = document.createElement("canvas");
+      added.classList.add("top-message")
       let ctx = added.getContext("2d");
-      added.width = 180;
+      added.width = 250;
       added.height = 300;
 
       const body = document.querySelector("body");
       body.appendChild(added);
 
-      let vx = 1, t = 1000, d = 96, positionY = 0, boxHeight;
+      let vx = 3, t = 1000, d = 96, positionY = 0, boxHeight;
       idInterval = setInterval(() => {
-        if(positionY+100 > added.height) 
+        if(positionY+200 > added.height) 
           clearInterval(idInterval);
         else{
           console.log
@@ -71,19 +73,10 @@ const productsDisplay = () => {
           ctx.save();
           ctx.translate(0, positionY);
           ctx.fillStyle ="green"
-          ctx.lineStyle = "green"
-          ctx.lineWidth = 1
           ctx.beginPath();
-          ctx.arc(10, 10, 10, Math.PI, Math.PI*3/2, false);
-          ctx.lineTo(added.width-10,0);
-          ctx.arc(added.width-10, boxHeight-10, 10, Math.PI*3/2, Math.PI*2, false);
-          ctx.lineTo(added.width,boxHeight-10);
-          ctx.arc(added.width-10, boxHeight-10, 10, 0, Math.PI/2, false);
-          ctx.lineTo(10,boxHeight);
-          ctx.arc(10, boxHeight-10, 10, Math.PI/2, Math.PI, false);
-          // ctx.lineTo(added.width-10,0);
+          ctx.roundRect(0,0, added.width, 100, 10);
           ctx.fill();
-          ctx.stroke();
+          ctx.closePath();
           ctx.restore()
 
           // Text on box
@@ -104,7 +97,7 @@ const productsDisplay = () => {
         added.remove();
         console.log(idTimeout);
         clearTimeout(idTimeout);
-      }, 30000);
+      }, 2500);
     })
     product.append(img, title, description, button)
     products.append(product)
