@@ -1,0 +1,69 @@
+:root{
+  --main-color: hsl(0, 0%, 91%);
+  --elements-color: hsl(0, 0%, 92%);
+  --elements-color-hover: hsl(0, 0%, 84%);
+  --text-color: hsl(0, 0%, 0%);
+  --creative-element: hsl(16, 77%, 64%);
+  --creative-element-hover: hsl(16, 70%, 71%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --creative-element-2: rgb(209, 117, 78);
+  --creative-element-2-hover: rgb(231, 150, 116);
+}
+
+.form-container{
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--main-color);
+}
+
+.form{
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--elements-color);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.long-input{
+  display: flex;
+  flex-basis: 50%;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between;
+}
+
+.long-input label{
+
+}
+
+.long-input div{
+  display: block;
+  grid-column-end: 3;
+}
+
+
+.double-inputs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+}
+
+label{
+  color: var(--text-color);
+}
+
+input{
+  width: 100%;
+  height: 2rem;
+  padding: 0.25rem;
+  outline: none;
+  border: 1px solid black;
+}
