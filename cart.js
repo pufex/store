@@ -46,14 +46,14 @@ const displayCart = () => {
   
   const summaryButton = document.createElement("a");
   summaryButton.classList.add("summary-button");
-  summaryButton.setAttribute("href", "payment-form.html")
+  summaryButton.setAttribute("href", "form-payment.html")
   summaryButton.innerText = "Pay now!"
   
   cartSummary.append(summaryHeader, hr1, summaryPrices, hr2, summaryHeader2, summaryButton);
   
   
   let sum = cart.reduce((accumulator, item) => accumulator + item.price*item.amount, 0)
-  summaryHeader2.innerText += "Total: $" + sum;
+  summaryHeader2.innerText += "Total: $" + sum.toFixed(2);
 
 
   cart.map((item, index) => {
