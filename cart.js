@@ -7,6 +7,60 @@ const saveCartToLocal=(cart)=>{
     localStorage.setItem('cart', JSON.stringify(cart))
 }
 
+let idTimeout = [,], idInterval, newPosition, deleted = localStorage.getItem("deleted") || "false";
+
+const boxAnimation = (canvas, ctx, t0, t1, vmax, position) => {
+  let boxHeight = 60;
+
+  let vx = 0, positionY = position, t = t0, fadeout = 0;
+
+  let time, dateStart, dateCurrent;
+
+
+  time = new Date();
+  dateStart = time.getSeconds() + time.getMilliseconds()/1000;
+
+  idInterval = setInterval(() => {
+    if(t > t1){
+      clearInterval(idInterval);
+      newPosition = positionY
+    }
+    else{
+
+      ctx.save();
+      ctx.fillStyle = "rgba(255, 255, 255 / 30%)"
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+      
+      // Message box 
+
+      ctx.save();
+      ctx.translate(0, positionY);
+      ctx.fillStyle = "crimson"
+      ctx.beginPath();
+      ctx.roundRect(0,0, canvas.width, boxHeight, 10);
+      ctx.fill();
+      ctx.closePath()
+      ctx.restore()
+
+      // Text on box
+      ctx.save();
+
+      ctx.translate(canvas.width/2, eval(boxHeight-24)+ positionY);
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+      ctx.font = "24px sans-serif";
+      ctx.fillText("Successfully deleted!", 0, 0);
+      ctx.restore();
+
+      vx = ((4*vmax)/((t1-t0)*(t0-t1)))*(t-t0)*(t-t1)
+      positionY = positionY + vx;
+      time = new Date();
+      dateCurrent = time.getSeconds() + time.getMilliseconds()/1000;
+      t = dateCurrent - dateStart;
+      }
+  }, 0);
+}
 
 const displayCart = () => {
   if(!cart.length){
@@ -125,6 +179,7 @@ const displayCart = () => {
       let newCart = cart.filter((item, index) => item.id != e.target.id)
      
       saveCartToLocal(newCart)
+      localStorage.setItem("deleted", "true")
       location.reload()
     })
     cartItem.append(img, cartTitle, cartDescription, cartButtons, buttonDelete)
@@ -135,4 +190,32 @@ const displayCart = () => {
   })
   console.log(sum);
 }
+console.log(deleted);
+if(deleted == "true"){
+  let added = document.querySelector(".top-message");
+  localStorage.setItem("deleted", "false");
+  if(added != null){
+    added.remove();
+    clearInterval(idInterval);
+    clearTimeout(idTimeout[0]);
+    clearTimeout(idTimeout[1]);
+  }
+  added = document.createElement("canvas");
+  added.classList.add("top-message")
+  let ctx = added.getContext("2d");
+  added.width = 250;
+  added.height = 300;
+  const body = document.querySelector("body");
+  body.appendChild(added)
+  boxAnimation(added, ctx, 0, 1, 0.57, 0), 
+  idTimeout[1] = setTimeout(() => {
+    boxAnimation(added, ctx, 0, 2, -2, newPosition)
+  }, 3000)
+  idTimeout[0] = setTimeout(() => {
+    added.remove();
+    console.log(idTimeout[0]);
+    clearTimeout(idTimeout[0]);
+  }, 6000);
+}
+  
 displayCart()
