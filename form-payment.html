@@ -19,19 +19,9 @@
                 ☼
             </div>
             <div class="nav-links">
-                <div class="cart nav-link">
-                    <span class="cart-icon">
-                        C
-                    </span>
-                    <a href="/cart.html">
-                        <div class="cart-arrow">
-                            >
-                        </div>
-                    </a>
-                    <div class="cart-number">
-                        0
-                    </div>
-                </div>
+                <a href="/cart.html" class="cart nav-link">
+                <img src="/cart.svg" class="cart-icon">
+                </a>
                 <a class="nav-link" href="/index.html">Home</a>
                 <a class="nav-link" href="/products.html">Products</a>
                 <a class="nav-link" href="/about.html">About</a>
@@ -42,25 +32,30 @@
   <main class="form-container">
     <form action="none" method="post" class="form" id="form">
       <div class="long-input">
-        <label for="" class="label">Full name</label>
-        <label for="" class="feedback">22</label>
-        <div>
-          <input type="text" name="fullname" id="fullname">
-
+        <div class="labels">
+          <label for="" class="label">Full name</label>
+          <label id="forName" for="" class="feedback">22</label>
         </div>
+        <input type="text" name="fullname" id="fullname">
       </div>
       <div class="long-input">
-        <label for="" class="label">Card Number</label>
-        <label for="" class="feedback"></label>
+        <div class="labels">
+          <label for="" class="label">Card Number</label>
+          <label id="forNumber" for="" class="feedback"></label>
+        </div>
         <input type="text" name="card-number" id="card-number">
       </div>
       <div class="double-inputs">
-        <label for="" class="label">Date</label>
-        <label for="" class="label">CVV</label>
+        <div class="labels">
+          <label for="" class="label">Date</label>
+          <label id="forDate" for="" class="feedback"></label>
+        </div>
+        <div class="labels">
+          <label for="" class="label">CVV</label>
+          <label id="forCVV" for="" class="feedback"></label>
+        </div>
         <input type="text" name="date" id="date">
         <input type="text" name="cvv" id="cvv">
-        <label for="" class="feedback"></label>
-        <label for="" class="feedback"></label>
       </div>
       <div class="long-input">
         <input type="submit" class="submit" value="Submit">
