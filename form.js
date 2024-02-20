@@ -110,7 +110,7 @@ newForm[3].addEventListener("change", ()=> {
   }
 })
 
-newForm.addEventListener("click", (e) => {
+newForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let returned = false;
   for(let i = 0; i < 4; i++){
@@ -160,5 +160,7 @@ newForm.addEventListener("click", (e) => {
   messageContainer.append(messageHeaderContainer, messageMessage, messageLink)
 
   container.appendChild(messageContainer);
+
+  localStorage.setItem("cart", "[]");
   // e.target.form[0]
 })
