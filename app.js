@@ -1,6 +1,7 @@
 import { getData } from './fetch.js'
 
-let step = 0, idTimeout, idInterval;
+let step = 0, idTimeout = [,], idInterval, newPosition;
+console.log(idTimeout.length)
 
 const data = await getData()
 console.log(data)
@@ -12,6 +13,59 @@ function dodajElement(nowyElement) {
   const elementy = JSON.parse(localStorage.getItem('cart'))
   elementy.push(nowyElement)
   localStorage.setItem('cart', JSON.stringify(elementy))
+}
+
+const boxAnimation = (canvas, ctx, t0, t1, vmax, position) => {
+  let boxHeight = 60;
+
+  let vx = 0, positionY = position, t = t0, fadeout = 0;
+
+  let time, dateStart, dateCurrent;
+
+
+  time = new Date();
+  dateStart = time.getSeconds() + time.getMilliseconds()/1000;
+
+  idInterval = setInterval(() => {
+    if(t > t1){
+      clearInterval(idInterval);
+      newPosition = positionY
+    }
+    else{
+
+      ctx.save();
+      ctx.fillStyle = "rgba(255, 255, 255 / 30%)"
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+      
+      // Message box 
+
+      ctx.save();
+      ctx.translate(0, positionY);
+      ctx.fillStyle ="green"
+      ctx.beginPath();
+      ctx.roundRect(0,0, canvas.width, boxHeight, 10);
+      ctx.fill();
+      ctx.closePath()
+      ctx.restore()
+
+      // Text on box
+      ctx.save();
+
+      ctx.translate(canvas.width/2, eval(boxHeight-24)+ positionY);
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+      ctx.font = "24px sans-serif";
+      ctx.fillText("Added to cart!", 0, 0);
+      ctx.restore();
+
+      vx = ((4*vmax)/((t1-t0)*(t0-t1)))*(t-t0)*(t-t1)
+      positionY = positionY + vx;
+      time = new Date();
+      dateCurrent = time.getSeconds() + time.getMilliseconds()/1000;
+      t = dateCurrent - dateStart;
+      }
+  }, 0);
 }
 
 const productsDisplay = () => {
@@ -49,7 +103,8 @@ const productsDisplay = () => {
       if(added != null){
         added.remove();
         clearInterval(idInterval);
-        clearTimeout(idTimeout);
+        clearTimeout(idTimeout[0]);
+        clearTimeout(idTimeout[1]);
       }
       added = document.createElement("canvas");
       added.classList.add("top-message")
@@ -60,44 +115,17 @@ const productsDisplay = () => {
       const body = document.querySelector("body");
       body.appendChild(added);
 
-      let vx = 3, t = 1000, d = 96, positionY = 0, boxHeight;
-      idInterval = setInterval(() => {
-        if(positionY+200 > added.height) 
-          clearInterval(idInterval);
-        else{
-          console.log
-          ctx.clearRect(0, 0, added.width, added.height);
+      boxAnimation(added, ctx, 0, 1, 0.57, 0)
 
-          // Message box
+      idTimeout[1] = setTimeout(() => {
+        boxAnimation(added, ctx, 0, 2, -2, newPosition)
+      }, 3000)
 
-          ctx.save();
-          ctx.translate(0, positionY);
-          ctx.fillStyle ="green"
-          ctx.beginPath();
-          ctx.roundRect(0,0, added.width, 100, 10);
-          ctx.fill();
-          ctx.closePath();
-          ctx.restore()
-
-          // Text on box
-
-          ctx.save();
-          ctx.translate(added.width/2, eval(100-38)+ positionY);
-          ctx.textAlign = "center";
-          ctx.fillStyle = "white";
-          ctx.font = "24px sans-serif";
-          ctx.fillText("Added to cart!", 0, 0);
-          ctx.restore();
-
-          positionY = positionY + vx;
-        }
-      })
-
-      idTimeout = setTimeout(() => {
+      idTimeout[0] = setTimeout(() => {
         added.remove();
-        console.log(idTimeout);
-        clearTimeout(idTimeout);
-      }, 2500);
+        console.log(idTimeout[0]);
+        clearTimeout(idTimeout[0]);
+      }, 6000);
     })
     product.append(img, title, description, button)
     products.append(product)
