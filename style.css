@@ -897,7 +897,9 @@ a{
     transition-timing-function: ease-out; */
     border-radius: 10px;
     /* clip-path: polygon(50% 0%, 100% 42%, 100% 100%, 0 100%, 0 42%); */
+    z-index: 999;
 }
+
 
 @media (max-width: 1050px){
     .products{
