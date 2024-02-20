@@ -207,7 +207,7 @@ if(deleted == "true"){
   added.height = 300;
   const body = document.querySelector("body");
   body.appendChild(added)
-  boxAnimation(added, ctx, 0, 1, 0.57, 0), 
+  boxAnimation(added, ctx, 0, 1, 0.57, 0, "Item deleted!"), 
   idTimeout[1] = setTimeout(() => {
     boxAnimation(added, ctx, 0, 2, -2, newPosition)
   }, 3000)
