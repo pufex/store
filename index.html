@@ -16,13 +16,16 @@
                 <div class="toggle-darkmode">
                     ☼
                 </div>
+                <a href="/cart.html" class="cart nav-link">
+                    <img src="/cart.svg" class="cart-icon">
+                </a>
                 <div class="nav-links">
-                    <a href="/cart.html" class="cart nav-link">
-                        <img src="/cart.svg" class="cart-icon">
-                    </a>
                     <a class="nav-link" href="/index.html">Home</a>
-                    <a class="nav-link" href="/products.html">Products</a>
-                    <a class="nav-link" href="/about.html">About</a>
+                </div>
+                <div class="hamburger">
+                    <span class="hamburger-icon">☰</span>
+                    <div class="hamburger-list hidden">
+                        <a href="./index.html" class="hamburger-link">Home</a>
                 </div>
             </div>
         </div>
@@ -38,50 +41,63 @@
         </div>
         <div class="sidebar">
             <h1 class="list-title">Price</h1>
-            <ul class="list-of-radios">
-                <li>
-                    Default
-                </li>
-                <li>
-                    Low to High
-                </li>
-                <li>
-                    High to Low
-                </li>
+            <ul class="list-of-radios" id="price">
+                <label for="price-default">
+                    <input id="price-default" type="radio" name="price" value="default" checked>
+                    Default prices
+                </label>
+                <label for="price-high">
+                    <input id="price-high" type="radio" name="price" value="low">
+                    Low to high
+                </label>
+                <label for="price-low">
+                    <input id="price-low" type="radio" name="price" value="high">
+                    High to low
+                </label>
             </ul>
             <div class="rolled">
-                <span class="rolled-title">Brand</span>
-                <ul class="rolled-list">
-                    <li>Adidas</li>
-                    <li>Puma</li>
-                    <li>Butex</li>
+                <span class="rolled-title">Category</span>
+                <ul class="rolled-list hidden" id="category">
+                    <label for="men">
+                        <input type="radio" name="category" id="men" value="men's clothing" checked>
+                        For men
+                    </label>
+                    <label for="woman">
+                        <input type="radio" name="category" id="woman" value="women's clothing">
+                        For women
+                    </label>
+                    <label for="jewerly">
+                        <input type="radio" name="category" id="jewerly" value="jewerly">
+                        Jewerly
+                    </label>
                 </ul>
             </div>
             <div class="rolled">
-                <span class="rolled-title">Sizes</span>
-                <ul class="rolled-list">
-                    <li>20-29</li>
-                    <li>30-39</li>
-                    <li>40-45</li>
+                <span class="rolled-title">Rating</span>
+                <ul class="rolled-list hidden" id="rating">
+                    <label for="3-starts">
+                        <input type="radio" name="rating" id="3-starts" value="3" checked>
+                        less than 4
+                    </label>
+                    <label for="4-stars">
+                        <input type="radio" name="rating" id="4-stars" value="4">
+                        4 stars
+                    </label>
+                    <label for="5-stars">
+                        <input type="radio" name="rating" id="5-stars" value="5">
+                        5 stars
+                    </label>
                 </ul>
             </div>
-            <div class="rolled">
-                <span class="rolled-title">Lorem ipsum</span>
-                <ul class="rolled-list">
-                    <li>Men</li>
-                    <li>Women</li>
-                    <li>Kids</li>
-                </ul>
-            </div>
-            <div class="sidebar-button">Apply filter</div>
+            <div class="sidebar-button apply-filters">Apply filter</div style="margin-bottom: 1rem;">
+            <div class="sidebar-button reset-filters">Reset</div>
         </div>
     </main>
     <footer class="footer-container">
         <div class="footer">
             <div class="footer-links">
                 <a href="./home.html" class="footer-link">Home</a>
-                <a href="./about.html" class="footer-link">About</a>
-                <a href="./products.html" class="footer-link">Products</a>
+                
             </div>
             <div class="socials">
                 <a href="https://github.com/pufex" class="social">
