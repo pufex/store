@@ -98,6 +98,14 @@ a{
     position: relative;
 }
 
+.cart-icon{
+    display: block;
+    height: 1.5rem;
+    width: 1.5rem;
+    object-fit: contain;
+    padding: 0 !important;
+}
+
 /* .cart::after{
     display: inline-block;
     position: absolute;
