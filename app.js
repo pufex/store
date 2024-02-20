@@ -64,6 +64,7 @@ const boxAnimation = (canvas, ctx, t0, t1, vmax, position) => {
       time = new Date();
       dateCurrent = time.getSeconds() + time.getMilliseconds()/1000;
       t = dateCurrent - dateStart;
+      console.log(t);
       }
   }, 0);
 }
@@ -115,7 +116,7 @@ const productsDisplay = () => {
       const body = document.querySelector("body");
       body.appendChild(added);
 
-      boxAnimation(added, ctx, 0, 1, 0.57, 0)
+      boxAnimation(added, ctx, 0, 0.75, 0.57, 0)
 
       idTimeout[1] = setTimeout(() => {
         boxAnimation(added, ctx, 0, 2, -2, newPosition)
