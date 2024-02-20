@@ -34,19 +34,16 @@
 
 .long-input{
   display: flex;
-  flex-basis: 50%;
-  flex-wrap: wrap;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 0.25rem;
   justify-content: space-between;
 }
 
-.long-input label{
-
-}
-
-.long-input div{
-  display: block;
-  grid-column-end: 3;
+.labels{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 
@@ -60,10 +57,20 @@ label{
   color: var(--text-color);
 }
 
+.feedback{
+  color: red;
+  font-weight: 700;
+}
+
 input{
   width: 100%;
   height: 2rem;
   padding: 0.25rem;
   outline: none;
   border: 1px solid black;
+}
+
+.invalid{
+  border: 3px solid red;
+  background-color: rgb(255, 192, 192);
 }
