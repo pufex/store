@@ -143,7 +143,7 @@ newForm.addEventListener("submit", (e) => {
 
   const messageIcon = document.createElement('img');
   messageIcon.classList.add("message-icon");
-  messageIcon.setAttribute("src", "/check-mark.svg");
+  messageIcon.setAttribute("src", "check-mark.svg");
 
   messageHeaderContainer.append(messageHeader, messageIcon);
 
@@ -154,7 +154,7 @@ newForm.addEventListener("submit", (e) => {
   const messageLink = document.createElement("a")
   messageLink.classList.add("message-link")
   messageLink.innerText = "Go back to buy more!"
-  messageLink.setAttribute("href", "./index.html")
+  messageLink.setAttribute("href", "index.html")
   
 
   messageContainer.append(messageHeaderContainer, messageMessage, messageLink)
