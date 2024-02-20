@@ -43,8 +43,9 @@ let color = [
     ],
 ]
 
-let i = 1;
+let i = 0;
 const switchTheme = () => {
+    i++;
     document.documentElement.style.setProperty('--main-color', color[0][i%2]);
     document.documentElement.style.setProperty('--elements-color', color[1][i%2]);
     document.documentElement.style.setProperty('--elements-color-hover', color[2][i%2]);
