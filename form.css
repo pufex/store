@@ -12,6 +12,7 @@
 }
 
 .form-container{
+  position: relative;
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -74,3 +75,83 @@ input{
   border: 3px solid red;
   background-color: rgb(255, 192, 192);
 }
+
+.message-container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  background-color: var(--elements-color);
+  padding: 2rem;
+  border-radius: 10px;
+  min-height: 250px;
+}
+
+.message-header-container{
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.message-header{
+  font-size: 2.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.message-icon{
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: contain;
+}
+
+.message-message{
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.message-link{
+  text-align: center;
+  display: block;
+  position: relative;
+  width: auto;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: blue;
+}
+
+@media (max-width: 1050px){
+  .nav{
+    margin-bottom: 0;
+  }
+
+  .form-container{
+    padding: 0;
+    margin: 0;
+  }
+
+  .form{
+    max-width: 100%;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .message-container{
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .footer{
+    margin-top: 0;
+  }
+}
+
