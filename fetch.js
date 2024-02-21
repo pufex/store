@@ -1,5 +1,5 @@
 export const getData = async () =>{
-  const res = await fetch('https://fakestoreapi.com/poducts');
+  const res = await fetch('https://fakestoreapi.com/products');
   if(!res.ok){
     location.assign("404.html");
     throw new Error('Failed to fetch data');
