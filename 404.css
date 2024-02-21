@@ -1,0 +1,78 @@
+:root{
+    --main-color: hsl(0, 0%, 91%);
+    --elements-color: hsl(0, 0%, 92%);
+    --elements-color-hover: hsl(0, 0%, 84%);
+    --text-color: hsl(0, 0%, 0%);
+    --creative-element: hsl(16, 77%, 64%);
+    --creative-element-hover: hsl(16, 70%, 71%);
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --creative-element-2: rgb(209, 117, 78);
+    --creative-element-2-hover: rgb(231, 150, 116);
+}
+
+.container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.error-404{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.header-404{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: auto;
+}
+
+.header-404-content{
+    text-wrap: nowrap;
+    font-size: 3rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.header-404-icon{
+    height: 3rem;
+    object-fit: contain;
+}
+
+.message-404{
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.link{
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    height: 1.5rem;
+    border-bottom: 1px solid blue;
+    color: blue;
+}
+
+.link-content{
+    position: relative;
+    left: 0;
+    top: 0;
+    color: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-wrap: nowrap;
+}
+
+.link:hover{
+    border-bottom: 1px solid rgb(62, 62, 255);
+    color: rgb(62, 62, 255);
+}
